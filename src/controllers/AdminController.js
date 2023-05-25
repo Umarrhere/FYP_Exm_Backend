@@ -56,18 +56,31 @@ const saveRecord = async (req, res, next) => {
 const getAllRecord = async (req, res, next) => {
     try{
         const AllRecords = await AdminRepo.getAllRecords()
-        successResponse(res, 'Getting All Records', AllRecords)
+        successResponse(res, 'Getting All Unsaved Records', AllRecords)
 
     }catch(err){
         next(err)
     }
 }
 
+
+const getCompletedRecord = async (req, res, next) => {
+    try{
+        const AllRecords = await AdminRepo.getCompletedRecord()
+        successResponse(res, 'Getting All Saved Records', AllRecords)
+
+    }catch(err){
+        next(err)
+    }
+}
+
+
 module.exports = {
     getAllData,
     removeAllData,
     saveRecord,
     getAllRecord,
+    getCompletedRecord,
 
 
 }

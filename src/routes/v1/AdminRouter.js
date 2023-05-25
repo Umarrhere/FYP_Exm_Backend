@@ -8,6 +8,7 @@ router.delete('/allData', checkAuth , AdminController.removeAllData)
 
 router.post('/saveRecord', checkAuth, AdminController.saveRecord)
 router.get('/records', checkAuth, AdminController.getAllRecord)
+router.get('/records/completed', checkAuth, AdminController.getCompletedRecord)
 
 
 

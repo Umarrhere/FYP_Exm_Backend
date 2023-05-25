@@ -10,17 +10,17 @@ const UserModel = require('../models/UserModel')
  * @returns {Object}
  */
 const getAllData = async () => {
-    const Nurses = await FacultyModel.find({})
-    const Patients = await StudentModel.find({})
+    const Faculty = await FacultyModel.find({})
+    const Students = await StudentModel.find({})
     const Realtime = await RealtimeModel.find({})
     const Holiday = await HolidayModel.find({})
     const Users = await UserModel.find({})
     const data = {
-        Nurses,
-        Patients,
-        Realtime,
-        Holiday,
-        Users
+        Faculty,
+        Students,
+        // Realtime,
+        // Holiday,
+        // Users
     }
     return data;
   };
@@ -58,9 +58,12 @@ const updateRecordByID = async (id, obj) => {
 }
 
 const getAllRecords = async () => {
-    return await RecordModel.find({}).sort({updatedAt: -1})
+    return await RecordModel.find({isCompleted: false}).sort({updatedAt: -1})
 }
 
+const getCompletedRecord = async () => {
+    return await RecordModel.find({isCompleted: true}).sort({updatedAt: -1})
+}
 
 module.exports = {
     getAllData,
@@ -68,6 +71,7 @@ module.exports = {
     createRecord,
     findRecord,
     updateRecordByID,
-    getAllRecords
+    getAllRecords,
+    getCompletedRecord
 
 }
